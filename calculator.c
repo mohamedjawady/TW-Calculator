@@ -28,7 +28,7 @@ float ex(node *p)
             else if (p->opr.nops > 2)
                 ex(p->opr.op[2]);
             return 0;
-        case PRINT:
+        case PUTS:
             if(ex(p->opr.op[0]) == (int)ex(p->opr.op[0])){
                 printf("%d\n", (int)ex(p->opr.op[0]));
             }else{
