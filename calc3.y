@@ -3,28 +3,20 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include "calculator.h"
+#include "includes.h"
 
-/* prototypes */
-node *opr(int oper, int nops, ...);
-node *id(int i);
-node *con(float value);
-void freeNode(node *p);
-int ex(node *p);
-int yylex(void);
-
-void yyerror(char *s);
 float sym[26];                    /* symbol table */
 %}
 
 %union {
-    float iValue;                 /* integer value */
-    char sIndex;                /* symbol table index */
-    node *nPtr;             /* node pointer */
+    float iValue;           
+    char sIndex;            
+    node *nPtr;             
 };
 
 %token <iValue> INTEGER
 %token <sIndex> VARIABLE
-%token WHILE IF PRINT
+%token WHILE IF PUTS
 %nonassoc IFX
 %nonassoc ELSE
 
@@ -43,13 +35,13 @@ program:
 
 function:
           function stmt         { ex($2); freeNode($2); }
-        | /* NULL */
+        | /* Epsilon production */
         ;
 
 stmt:
           ';'                            { $$ = opr(';', 2, NULL, NULL); }
         | expr ';'                       { $$ = $1; }
-        | PRINT expr ';'                 { $$ = opr(PRINT, 1, $2); }
+        | PUTS expr ';'                 { $$ = opr(PUTS, 1, $2); }
         | VARIABLE '=' expr ';'          { $$ = opr('=', 2, id($1), $3); }
         | WHILE '(' expr ')' stmt        { $$ = opr(WHILE, 2, $3, $5); }
         | IF '(' expr ')' stmt %prec IFX { $$ = opr(IF, 2, $3, $5); }

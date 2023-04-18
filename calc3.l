@@ -41,7 +41,7 @@ float ([0-9])+[.]([0-9])+
 "while"         return WHILE;
 "if"            return IF;
 "else"          return ELSE;
-"print"         return PRINT;
+"puts"          return PUTS;
 
 [ \t\n]+        ;       /* ignore whitespace */
 
