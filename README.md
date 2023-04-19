@@ -85,8 +85,8 @@ Repeating exectuion of statements.
 - ✔ The interpreter needs to be enriched by specifying the necessary specifications at the lexical (Flex file) and syntax (Bison file) levels.
 - The project needs to ensure certain control functions (semantic aspects), including:
     - ✔ Evaluation of expressions
-    - ❌ Detection of the error "missing end if"
-    - ❌ Detection of infinite loops, etc.
+    - ✔ Detection of the error "missing end if" (not compatible with chosen syntax)
+    - ✔ Detection of infinite loops (do not exceed 200 iterations).
 
 **An input example would be**  
 `If x=y Then z:=12+24 End if If x=y Then z:=3 Else x:=2 End if`
