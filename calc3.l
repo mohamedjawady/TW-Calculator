@@ -21,8 +21,8 @@ float ([0-9])+[.]([0-9])+
 
 {float} {
     // printf("Float %f\n", atof(yytext));
-    yylval.iValue = atof(yytext);
-                return INTEGER;
+		yylval.fValue = atof(yytext);
+                return FLOAT;
 }
 {integer} {
     // printf("Integer %s\n", yytext);
@@ -42,7 +42,7 @@ float ([0-9])+[.]([0-9])+
 "if"            return IF;
 "else"          return ELSE;
 "puts"          return PUTS;
-
+"typeof"	return TYPEOF;
 [ \t\n]+        ;       /* ignore whitespace */
 
 .               yyerror("Unknown character");

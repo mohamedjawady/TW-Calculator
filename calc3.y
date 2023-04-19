@@ -9,14 +9,16 @@ float sym[26];                    /* symbol table */
 %}
 
 %union {
-    float iValue;           
+	int iValue; 
+	float fValue;           
     char sIndex;            
     node *nPtr;             
 };
 
 %token <iValue> INTEGER
+%token <fValue> FLOAT 
 %token <sIndex> VARIABLE
-%token WHILE IF PUTS
+%token WHILE IF PUTS TYPEOF
 %nonassoc IFX
 %nonassoc ELSE
 
@@ -42,6 +44,7 @@ stmt:
           ';'                            { $$ = opr(';', 2, NULL, NULL); }
         | expr ';'                       { $$ = $1; }
         | PUTS expr ';'                 { $$ = opr(PUTS, 1, $2); }
+	| TYPEOF expr ';'		{ $$ = opr(TYPEOF, 1, $2); }
         | VARIABLE '=' expr ';'          { $$ = opr('=', 2, id($1), $3); }
         | WHILE '(' expr ')' stmt        { $$ = opr(WHILE, 2, $3, $5); }
         | IF '(' expr ')' stmt %prec IFX { $$ = opr(IF, 2, $3, $5); }
@@ -55,7 +58,8 @@ stmt_list:
         ;
 
 expr:
-          INTEGER               { $$ = con($1); }
+          INTEGER { $$ = conInteger($1); }
+		| FLOAT  { $$ = conFloat($1); }
         | VARIABLE              { $$ = id($1); }
         | '-' expr %prec UMINUS { $$ = opr(UMINUS, 1, $2); }
         | expr '+' expr         { $$ = opr('+', 2, $1, $3); }
@@ -73,7 +77,7 @@ expr:
 
 %%
 
-node *con(float value) {
+node *conFloat(float value) {
     node *p;
 
     /* allocate node */
@@ -83,9 +87,24 @@ node *con(float value) {
     /* copy information */
     p->type = typeCon;
     p->con.value = value;
-
+    p->con.type = FLOAT_TYPE;
     return p;
 }
+
+
+node *conInteger(int value){
+	node* p;
+	
+	if((p = malloc(sizeof(node))) == NULL) 
+		yyerror("Out of memory");
+
+	p->type = typeCon;
+	p->con.value = value;
+	p->con.type = INTEGER_TYPE;
+	return p;
+
+}
+
 
 node *id(int i) {
     node *p;

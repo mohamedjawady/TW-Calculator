@@ -1,8 +1,10 @@
 typedef enum { typeCon, typeId, typeOpr } nodeEnum;
 
+typedef enum { INTEGER_TYPE, FLOAT_TYPE } langType;
 
 typedef struct {
-    float value;                  
+    float value;
+    langType type;
 } conNode;
 
 

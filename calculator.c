@@ -5,6 +5,8 @@
 
 void yyerror(char *s);
 
+char* typeMappings[] = {"INTEGER", "FLOAT"};
+
 float ex(node *p)
 {
     if (!p)
@@ -35,6 +37,15 @@ float ex(node *p)
                 printf("%f\n", ex(p->opr.op[0]));
             }
             return 0;
+	case TYPEOF:
+	    // TODO: remove conditional? redundant in PUTS and TYPEOF?
+	    // TODO: handle proper typing of number literals 
+            if(ex(p->opr.op[0]) == (int)ex(p->opr.op[0])){
+                 printf("%d (%s)\n", (int)ex(p->opr.op[0]), typeMappings[INTEGER_TYPE]);
+            }else{
+                 printf("%f (%s)\n", ex(p->opr.op[0]), typeMappings[FLOAT_TYPE]);
+             }
+	    return 0;
         case ';':
             ex(p->opr.op[0]);
             return ex(p->opr.op[1]);
