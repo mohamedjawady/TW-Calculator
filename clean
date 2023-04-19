@@ -1,1 +1,4 @@
+rm y.tab.c  y.tab.h
 rm lex.yy.o y.tab.o
+rm calculator.exe
+
