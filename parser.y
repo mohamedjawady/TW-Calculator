@@ -6,11 +6,12 @@
 #include "includes.h"
 
 float sym[26];                    /* symbol table */
+int counter = 0;
 %}
 
 %union {
-	int iValue; 
-	float fValue;           
+    int iValue; 
+    float fValue;           
     char sIndex;            
     node *nPtr;             
 };
@@ -36,7 +37,7 @@ program:
         ;
 
 function:
-          function stmt         { ex($2); freeNode($2); }
+          function stmt         { ex($2, &counter); freeNode($2); }
         | /* Epsilon production */
         ;
 

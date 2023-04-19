@@ -6,7 +6,7 @@ node *id(int i);
 node *conFloat(float value);
 node *conInteger(int value);
 void freeNode(node *p);
-int ex(node *p);
+int ex(node *p, int* counter);
 int yylex(void);
 void yyerror(char *s);
 
