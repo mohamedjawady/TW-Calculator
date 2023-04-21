@@ -121,7 +121,15 @@ Additionally, the interpreter can be easily extended to support additional langu
 - In a hashmap symbol table, the symbol names are used as keys, and the symbol attributes, such as data type, scope, and memory location, are stored as values in a hash table. 
 This allows for fast and efficient lookup of symbol information during compilation or interpretation.
 
-
+**Detection of infinite loops**
+- In order to detect, and prevent infinite loops, we followed a counter strategy; 
+`C
+#define MAX_ITERATIONS 200
+` in combination with 
+`C
+float ex(node *p, int* counter)
+` to keep track of an iterations' counter at runtime.  
+If the number of iterations present at `counter` exceeds the set MAX_ITERATIONS, the program errors out.  
 ## Authors
 
 - [@mohamedjawady](https://www.github.com/mohamedjawady)
