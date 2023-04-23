@@ -21,7 +21,7 @@ Identifiers are single alphabetic characters, to simplify the symbols' table for
 #### Assignment statement
 
 ```
-  identidier = expression;
+  identifier = expression;
 ```
 Values can be either integers, or floating point numbers.
 An example would be:
@@ -66,7 +66,7 @@ Conditional execution of statements. (*non-zero values are evalued as truthful*)
 Note that the else block is optional.
 
 #### 2. Loops
-Repeating exectuion of statements.
+Repeating execution of statements.
 ```
   a = 5;
   while(a>0){
@@ -95,7 +95,7 @@ For the execution of this project, different candidate solutions were taken into
 - Tree-walking Interpreter
 - JIT (Just-In-Time Compilation) compiler.
 - Compilation targerting a VM. 
-The simplest, and most most suitable for this type of problem at this scale was deemed to be a tree-walking interpreter, using Lex and Yacc.
+The simplest, and most suitable for this type of problem at this scale was deemed to be a tree-walking interpreter, using Lex and Yacc.
 
 ### Implementation Approach - Tree Walking Interpreter
 In this approach, the input code is first parsed to a lexer, then to a parser in order to create an abstract syntax tree (AST) that represents the structure of the program.  
