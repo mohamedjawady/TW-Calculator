@@ -10,6 +10,16 @@ char* typeMappings[] = {"INTEGER", "FLOAT"};
 
 float ex(node *p, int* counter)
 {
+/* 
+ * The 'ex' function is a recursive evaluator that takes a parse tree node as input 
+ * and returns the result of evaluating that node. It recursively evaluates 
+ * children of an operator node and performs the operation specified by the 
+ * operator. For example, when encountering an addition operator node, 'ex' evaluates 
+ * the left and right children of the node and returns their sum. The function also 
+ * handles control flow statements such as 'if' and 'while', and has built-in error 
+ * handling for division by zero and detecting infinite loops. Finally, it also prints 
+ * the value and type of expressions when encountering the 'puts' and 'typeof' operators.
+ */
     if (!p)
         return 0;
     switch (p->type)
@@ -22,7 +32,7 @@ float ex(node *p, int* counter)
         switch (p->opr.oper)
         {
         case WHILE:
-            while (ex(p->opr.op[0], counter)){
+            whileex(p->opr.op[0], counter)){
                 // printf("Counter: %d", *counter);
 				if (*counter > MAX_ITERATIONS) {
 			        printf("Infinite loop detected!\n");
@@ -49,9 +59,9 @@ float ex(node *p, int* counter)
 	    // TODO: remove conditional? redundant in PUTS and TYPEOF?
 	    // TODO: handle proper typing of number literals 
             if(ex(p->opr.op[0], counter) == (int)ex(p->opr.op[0], counter)){
-                 printf("%d (%s)\n", (int)ex(p->opr.op[0], counter), typeMappings[INTEGER_TYPE]);
+                 printf("%s\n", (int)ex(p->opr.op[0], counter), typeMappings[INTEGER_TYPE]);
             }else{
-                 printf("%f (%s)\n", ex(p->opr.op[0], counter), typeMappings[FLOAT_TYPE]);
+                 printf("%s\n", ex(p->opr.op[0], counter), typeMappings[FLOAT_TYPE]);
              }
 	    return 0;
         case ';':
