@@ -32,7 +32,7 @@ float ex(node *p, int* counter)
         switch (p->opr.oper)
         {
         case WHILE:
-            whileex(p->opr.op[0], counter)){
+            while(ex(p->opr.op[0], counter)){
                 // printf("Counter: %d", *counter);
 				if (*counter > MAX_ITERATIONS) {
 			        printf("Infinite loop detected!\n");

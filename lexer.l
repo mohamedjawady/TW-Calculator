@@ -4,8 +4,9 @@
 #include "y.tab.h"
 void yyerror(char *);
 %}
+
 integer ([1-9])([0-9])*
-float ([0-9])+[.]([0-9])+
+float ([0-9])+[.]([0-9])*
 %%
 
 
@@ -13,23 +14,18 @@ float ([0-9])+[.]([0-9])+
                 yylval.sIndex = *yytext - 'a';
                 return VARIABLE;
             }
-
 0           {
                 yylval.iValue = atoi(yytext);
                 return INTEGER;
             }
-
-{float} {
-    // printf("Float %f\n", atof(yytext));
-		yylval.fValue = atof(yytext);
+{float}     {
+                yylval.fValue = atof(yytext);
                 return FLOAT;
-}
-{integer} {
-    // printf("Integer %s\n", yytext);
+            }
+{integer}   {
                 yylval.iValue = atof(yytext);
                 return INTEGER;
             }
-
 [-()<>=+*/;{}] {
                 return *yytext;
              }
@@ -42,10 +38,18 @@ float ([0-9])+[.]([0-9])+
 "if"            return IF;
 "else"          return ELSE;
 "puts"          return PUTS;
-"typeof"	return TYPEOF;
+"typeof"	    return TYPEOF;
+
+
+
+
+
+
 [ \t\n]+        ;       /* ignore whitespace */
 
-.               yyerror("Unknown character");
+. {
+    yyerror("Unexpected character");
+}
 %%
 int yywrap(void) {
     return 1;
