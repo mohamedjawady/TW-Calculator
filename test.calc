@@ -1,0 +1,9 @@
+a=2;
+b=3;
+puts a;
+puts b;
+
+while(a){
+	puts a;
+	a = a-1;
+}
