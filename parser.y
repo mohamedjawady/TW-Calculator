@@ -6,6 +6,7 @@
 #include "includes.h"
 
 float sym[26];                    /* symbol table */
+FILE* yyin;
 int counter = 0;
 %}
 
@@ -156,7 +157,9 @@ void yyerror(char *s) {
     fprintf(stdout, "%s\n", s);
 }
 
-int main(void) {
+int main(int argc, char** argv) {
+	yyin = fopen(argv[1], "r");
     yyparse();
+	fclose(yyin);
     return 0;
 }
