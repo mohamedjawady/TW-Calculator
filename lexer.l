@@ -54,3 +54,5 @@ float ([0-9])+[.]([0-9])*
 int yywrap(void) {
     return 1;
 }
+
+extern FILE* yyin;
