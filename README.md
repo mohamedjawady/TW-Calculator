@@ -5,16 +5,32 @@
 The project aims to develop an interpreter for mathematical expressions using Flex/Bison tools. The interpreter is expected to calculate the value of an expression formed by real numbers and the usual operators (+, -, *, and /).
 
 ## Installation
+Working with the current project requires the following tools:  
+- make
+- graphviz  
 
-Building the calculator executable
+Installing requirements (installation steps for debian, should work fine on other nix systems and windows)  
 `
-    bash build
+    sudo apt install build-essentials
+    # run the follwing commands to use the visualize utility
+    sudo apt install graphviz
+    pip install graphviz
 `
+Building the calculator executable  
+`
+    make
+`  
 
-Files cleanup
+Files cleanup  
 `
-    bash clean
+    make clean
+`  
+
+Working with visualize.py  
+Used to visualize the parser state machine and its transitions.  
 `
+    python visualize.py
+`  
 ## Examples
 Statements are comma separated, with current support for flow control statements, assignment and evaluation of expressions.  
 Identifiers are single alphabetic characters, to simplify the symbols' table form, not resorting to Hashmaps (more in the notes section). 
