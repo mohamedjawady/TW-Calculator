@@ -10,27 +10,34 @@ Working with the current project requires the following tools:
 - graphviz  
 
 Installing requirements (installation steps for debian, should work fine on other nix systems and windows)  
+
 `
     sudo apt install build-essentials
     # run the follwing commands to use the visualize utility
     sudo apt install graphviz
     pip install graphviz
-`
+`  
+
 Building the calculator executable  
+
 `
     make
 `  
 
 Files cleanup  
+
 `
     make clean
 `  
 
 Working with visualize.py  
+
 Used to visualize the parser state machine and its transitions.  
+
 `
     python visualize.py
-`  
+`
+
 ## Examples
 Statements are comma separated, with current support for flow control statements, assignment and evaluation of expressions.  
 Identifiers are single alphabetic characters, to simplify the symbols' table form, not resorting to Hashmaps (more in the notes section). 
