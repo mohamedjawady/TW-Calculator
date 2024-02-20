@@ -12,7 +12,7 @@ Working with the current project requires the following tools:
 Installing requirements (installation steps for debian, should work fine on other nix systems and windows)  
 
 ```bash
-    sudo apt install build-essentials  
+    sudo apt install build-essential  
     # run the follwing commands to use the visualize utility  
     sudo apt install graphviz  
     pip install graphviz  
