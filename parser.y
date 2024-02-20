@@ -6,7 +6,7 @@
 #include "includes.h"
 
 float sym[26];                    /* symbol table */
-FILE* yyin;
+extern FILE* yyin;
 int counter = 0;
 %}
 
